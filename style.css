@@ -1,0 +1,447 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+
+/* Hanya untuk gift.html */
+
+.gift-bg-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/N-and-Uzi.jpeg');
+    /* atau ganti dengan bg yang kamu mau */
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+
+/* Konten tetap di atas */
+
+.main-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    color: #fff;
+    /* ubah kalau nggak kelihatan */
+}
+
+nav {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    font-weight: bold;
+}
+
+.bg-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+}
+
+.bg-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+body.gift-page {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fdfdfd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chamomile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    padding: 2rem;
+    border-radius: 1rem;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+}
+
+.chamomile-svg {
+    animation: spin 20s linear infinite;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 200px;
+    height: 200px;
+}
+
+.chamomile-svg:hover {
+    transform: scale(1.05);
+}
+
+.chamomile-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.puzzle-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.puzzle-game.hidden {
+    display: none;
+}
+
+.puzzle-image {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.chamomile-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.navbar {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.navbar .active {
+    text-decoration: underline;
+}
+
+.gift-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.gift-image {
+    max-width: 90%;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+/* ========== GIFT PAGE STYLES ========== */
+
+
+/* Hidden class untuk menyembunyikan elemen */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* Puzzle container */
+
+#gift-puzzle-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    background-color: #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+
+/* Puzzle pieces (NEW - untuk tile dari background image) */
+
+.puzzle-tile {
+    width: 100px;
+    height: 100px;
+    background-size: 300px 300px;
+    border: 1px solid #ccc;
+    cursor: grab;
+    user-select: none;
+}
+
+#gift-puzzle-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #fff;
+    /* atau warna yang kontras */
+    margin-top: 20px;
+}
+
+
+/* Puzzle drag area (optional - backup jika ada versi sebelumnya) */
+
+.gift-puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 2px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+
+/* Next button */
+
+#gift-next-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #fcd9a4;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+/* Puzzle Piece */
+
+.puzzle-piece {
+    border: 1px solid #ddd;
+    cursor: grab;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 5;
+}
+
+
+/* Fireworks effect (menggunakan efek animasi radial) */
+
+#gift-fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle, #fff6d1 10%, transparent 70%);
+    z-index: 20;
+    animation: fireworks 0.8s ease-out forwards;
+}
+
+@keyframes fireworks {
+    0% {
+        opacity: 1;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+
+/* Card style */
+
+.gift-card-text-wrapper {
+    width: 100%;
+    /* max-width: 400px; */
+    margin: 1 rem auto;
+    padding: 50px 25px;
+    background-color: #fff8e7;
+    border: 2px solid #fcd9a4;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 16px;
+    /* color: #333; */
+    line-height: 1.6;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.gift-card-text {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.6;
+    white-space: pre-line;
+    min-height: 80px;
+}
+
+
+/* #puzzleContainer,
+#nextButton {
+    display: none;
+}
+
+
+Styling tambahan (opsional)
+
+#puzzleContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#nextButton {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: #ffdd57;
+    border: none;
+    cursor: pointer;
+} */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* Gift Card Styling */
+
+#gift-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* agar kartu ke tengah */
+    gap: 24px;
+    /* jarak antar kartu */
+    margin-top: 40px;
+}
+
+.gift-card {
+    width: 354px;
+    height: 452px;
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin: 1rem;
+}
+
+.gift-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.gift-card.flipped .gift-card-inner {
+    transform: rotateY(180deg);
+}
+
+.gift-card-front,
+.gift-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: white;
+}
+
+.gift-card-front {
+    background-color: #ffffff;
+}
+
+.gift-card-back {
+    background-color: #fff0e6;
+    transform: rotateY(180deg);
+}
+
+.gift-card-image {
+    width: 360px;
+    height: 452px;
+}
+
+.gift-card-image-2 {
+    width: 354px;
+    height: 250px;
+}
+
+.gift-card-text {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #444;
+    text-align: center;
+}
