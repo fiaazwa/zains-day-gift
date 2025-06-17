@@ -79,6 +79,7 @@ function checkPuzzleComplete() {
         document.getElementById("gift-fireworks").classList.remove("hidden");
         document.getElementById("gift-puzzle-title").classList.add("hidden");
 
+
         setTimeout(() => {
             document.getElementById("gift-fireworks").classList.add("hidden");
             nextBtn.classList.remove("hidden");
