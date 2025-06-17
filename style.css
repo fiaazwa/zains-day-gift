@@ -255,6 +255,11 @@ body.gift-page {
     z-index: 10;
 }
 
+.puzzle-tile.selected {
+    outline: 3px solid #ffb703;
+    box-shadow: 0 0 10px #ffb703;
+}
+
 
 /* Next button */
 

@@ -34,40 +34,39 @@ function initPuzzle() {
         tile.style.backgroundSize = `${tileSize * gridSize}px`;
         tile.style.backgroundPosition = `-${(positions[i] % gridSize) * tileSize}px -${Math.floor(positions[i] / gridSize) * tileSize}px`;
 
-        tile.setAttribute("draggable", true);
         tile.dataset.correctIndex = i;
         tile.dataset.currentIndex = positions[i];
-        tile.addEventListener("dragstart", handleDragStart);
-        tile.addEventListener("dragover", (e) => e.preventDefault());
-        tile.addEventListener("drop", handleDrop);
+        tile.addEventListener("click", handleTileClick);
 
         tiles.push(tile);
         puzzleContainer.appendChild(tile);
     }
 }
 
-let dragSrcEl = null;
+let firstTile = null;
 
-function handleDragStart(e) {
-    dragSrcEl = this;
+function handleTileClick() {
+    if (!firstTile) {
+        firstTile = this;
+        this.classList.add("selected");
+    } else {
+        if (firstTile !== this) {
+            swapTiles(firstTile, this);
+            checkPuzzleComplete();
+        }
+        firstTile.classList.remove("selected");
+        firstTile = null;
+    }
 }
 
-function handleDrop(e) {
-    if (dragSrcEl !== this) {
-        const fromIndex = dragSrcEl.dataset.currentIndex;
-        const toIndex = this.dataset.currentIndex;
+function swapTiles(tile1, tile2) {
+    const tempBg = tile1.style.backgroundPosition;
+    tile1.style.backgroundPosition = tile2.style.backgroundPosition;
+    tile2.style.backgroundPosition = tempBg;
 
-        const fromBg = dragSrcEl.style.backgroundPosition;
-        const toBg = this.style.backgroundPosition;
-
-        dragSrcEl.style.backgroundPosition = toBg;
-        this.style.backgroundPosition = fromBg;
-
-        dragSrcEl.dataset.currentIndex = toIndex;
-        this.dataset.currentIndex = fromIndex;
-
-        checkPuzzleComplete();
-    }
+    const tempIndex = tile1.dataset.currentIndex;
+    tile1.dataset.currentIndex = tile2.dataset.currentIndex;
+    tile2.dataset.currentIndex = tempIndex;
 }
 
 function checkPuzzleComplete() {
