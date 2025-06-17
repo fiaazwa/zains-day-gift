@@ -36,37 +36,42 @@ function initPuzzle() {
 
         tile.dataset.correctIndex = i;
         tile.dataset.currentIndex = positions[i];
-        tile.addEventListener("click", handleTileClick);
+
+        // NEW: Tap-to-swap support
+        tile.addEventListener("click", () => handleTileClick(tile));
 
         tiles.push(tile);
         puzzleContainer.appendChild(tile);
     }
 }
 
-let firstTile = null;
-
-function handleTileClick() {
-    if (!firstTile) {
-        firstTile = this;
-        this.classList.add("selected");
+function handleTileClick(tile) {
+    if (!selectedTile) {
+        selectedTile = tile;
+        tile.classList.add("selected");
+    } else if (selectedTile === tile) {
+        // Deselect if same tile clicked
+        tile.classList.remove("selected");
+        selectedTile = null;
     } else {
-        if (firstTile !== this) {
-            swapTiles(firstTile, this);
-            checkPuzzleComplete();
-        }
-        firstTile.classList.remove("selected");
-        firstTile = null;
+        // Swap
+        const fromIndex = selectedTile.dataset.currentIndex;
+        const toIndex = tile.dataset.currentIndex;
+
+        const fromBg = selectedTile.style.backgroundPosition;
+        const toBg = tile.style.backgroundPosition;
+
+        selectedTile.style.backgroundPosition = toBg;
+        tile.style.backgroundPosition = fromBg;
+
+        selectedTile.dataset.currentIndex = toIndex;
+        tile.dataset.currentIndex = fromIndex;
+
+        selectedTile.classList.remove("selected");
+        selectedTile = null;
+
+        checkPuzzleComplete();
     }
-}
-
-function swapTiles(tile1, tile2) {
-    const tempBg = tile1.style.backgroundPosition;
-    tile1.style.backgroundPosition = tile2.style.backgroundPosition;
-    tile2.style.backgroundPosition = tempBg;
-
-    const tempIndex = tile1.dataset.currentIndex;
-    tile1.dataset.currentIndex = tile2.dataset.currentIndex;
-    tile2.dataset.currentIndex = tempIndex;
 }
 
 function checkPuzzleComplete() {
