@@ -256,8 +256,10 @@ body.gift-page {
 }
 
 .puzzle-tile.selected {
-    outline: 3px solid #ffb703;
-    box-shadow: 0 0 10px #ffb703;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ffc0cb;
+    z-index: 2;
+    border: 2px solid #ff69b4;
 }
 
 

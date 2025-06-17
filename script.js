@@ -3,12 +3,13 @@
 // ===================
 
 const puzzleContainer = document.getElementById("gift-puzzle-container");
-const puzzleImageSrc = "assets/puzzle1.jpg"; // jangan pakai spasi
+const puzzleImageSrc = "assets/puzzle1.jpg";
 const nextBtn = document.getElementById("gift-next-btn");
 
 let tileSize = 100;
 let gridSize = 3;
 let tiles = [];
+let selectedTile = null;
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -27,9 +28,6 @@ function initPuzzle() {
         const tile = document.createElement("div");
         tile.classList.add("puzzle-tile");
 
-        const row = Math.floor(i / gridSize);
-        const col = i % gridSize;
-
         tile.style.backgroundImage = `url(${puzzleImageSrc})`;
         tile.style.backgroundSize = `${tileSize * gridSize}px`;
         tile.style.backgroundPosition = `-${(positions[i] % gridSize) * tileSize}px -${Math.floor(positions[i] / gridSize) * tileSize}px`;
@@ -37,24 +35,23 @@ function initPuzzle() {
         tile.dataset.correctIndex = i;
         tile.dataset.currentIndex = positions[i];
 
-        // NEW: Tap-to-swap support
-        tile.addEventListener("click", () => handleTileClick(tile));
+        tile.addEventListener("click", () => handleTileTap(tile));
 
         tiles.push(tile);
         puzzleContainer.appendChild(tile);
     }
 }
 
-function handleTileClick(tile) {
+function handleTileTap(tile) {
     if (!selectedTile) {
         selectedTile = tile;
         tile.classList.add("selected");
     } else if (selectedTile === tile) {
-        // Deselect if same tile clicked
+        // Klik lagi untuk batal
         tile.classList.remove("selected");
         selectedTile = null;
     } else {
-        // Swap
+        // Tukar
         const fromIndex = selectedTile.dataset.currentIndex;
         const toIndex = tile.dataset.currentIndex;
 
@@ -75,20 +72,20 @@ function handleTileClick(tile) {
 }
 
 function checkPuzzleComplete() {
-    let isCorrect = tiles.every(
+    const isCorrect = tiles.every(
         (tile) => tile.dataset.correctIndex === tile.dataset.currentIndex
     );
     if (isCorrect) {
         document.getElementById("gift-fireworks").classList.remove("hidden");
-        document.getElementById("gift-puzzle-title").classList.add("hidden"); // Tambahkan baris ini
+        document.getElementById("gift-puzzle-title").classList.add("hidden");
 
         setTimeout(() => {
             document.getElementById("gift-fireworks").classList.add("hidden");
             nextBtn.classList.remove("hidden");
         }, 2000);
     }
-
 }
+
 
 // ===================
 // 🌼 CHAMOMILE PRESS LOGIC
