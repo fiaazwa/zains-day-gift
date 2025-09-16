@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="gift-page">
+    <!-- Blur background -->
+    <div class="gift-bg-blur"></div>
+
+    <!-- Navbar dan konten utama -->
+    <!-- <nav class="navbar">
+        <a href="index.html">Greeting Card</a>
+        <span>•</span>
+        <a href="gift.html">Gift</a>
+    </nav> -->
+
+    <!-- Chamomile & Puzzle View -->
+    <section class="chamomile-section">
+        <!-- <img src="assets/chamomile.jpeg" alt="Chamomile" /> -->
+
+        <div class="chamomile-container">
+            <!-- SVG CHAMOMILE -->
+            <div class="chamomile-svg" onclick="chamomilePressed()">
+                <svg viewBox="0 0 100 100" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(50,50)">
+        <g class="petals">
+            <!-- 12 petals -->
+            <g id="petals">
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(0) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(30) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(60) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(90) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(120) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(150) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(180) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(210) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(240) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(270) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(300) translate(0,-20)"/>
+            <ellipse rx="10" ry="15" fill="white" transform="rotate(330) translate(0,-20)"/>
+            </g>
+            <circle r="10" fill="#FFD700"/>
+        </g>
+        </g>
+    </svg>
+            </div>
+            <p class="chamomile-text">Press the chamomile</p>
+        </div>
+        <!-- Puzzle Wrapper -->
+        <div id="gift-puzzle-wrapper" class="hidden">
+            <h2 id="gift-puzzle-title" class="hidden">Solve the Puzzle!</h2>
+            <h4 id="gift-puzzle-instruction" dir="rtl" style="color: white;">اضغط على أي قطعة، بعدين اضغط على قطعة تانية عشان تبدّلوا الأماكن!</h4>
+            <div id="gift-puzzle-container"></div>
+        </div>
+
+        <!-- Fireworks Effect -->
+        <div id="gift-fireworks" class="hidden">🎆</div>
+
+        <!-- Next Button -->
+        <button id="gift-next-btn" class="hidden">💌 Open me!</button>
+
+        <!-- <div id="gift-cards-container" class="hidden">
+            <div class="gift-card-text-wrapper">
+                <img src="assets/heart.png" alt="Cute heart" class="gift-card-image">
+                <p id="card-text-1" class="gift-card-text"></p>
+            </div>
+            <div class="gift-card-text-wrapper">
+                <img src="assets/heart.png" alt="Cute heart" class="gift-card-image">
+                <p id="card-text-2" class="gift-card-text"></p>
+            </div>
+        </div> -->
+
+        <!-- 🎁 GREETING CARDS SECTION -->
+        <div id="gift-cards-container" class="hidden">
+            <div class="gift-card" onclick="flipCard(this)">
+                <div class="gift-card-inner">
+                    <div class="gift-card-front">
+                        <!-- GAMBAR -->
+                        <img src="assets/cover.jpg" alt="Heart" class="gift-card-image">
+                    </div>
+                    <div class="gift-card-back">
+                        <p id="card-text-1" class="gift-card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gift-card" onclick="flipCard(this)">
+                <div class="gift-card-inner">
+                    <div class="gift-card-front">
+                        <!-- GAMBAR -->
+                        <img src="assets/colab.jpg" alt="Heart" class="gift-card-image-2">
+                    </div>
+                    <div class="gift-card-back">
+                        <p id="card-text-2" class="gift-card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <audio id="gift-audio" src="assets/pure-love-304010.mp3"></audio>
+
+
+
+
+
+</body>
+<script src="script.js"></script>
+
+
+</html>
